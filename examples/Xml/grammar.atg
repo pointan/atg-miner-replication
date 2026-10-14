@@ -1,0 +1,36 @@
+/* XmlTree.atg
+ *
+ * A context-free grammar for XML (excerpt) from [1].
+ *
+ * XmlTree = XmlOpencloseTag | XmlOpenTag InnerXmlTree XmlCloseTag.
+ * InnerXmlTree = text | XmlTree | InnerXmlTree InnerXmlTree.
+ * XmlOpenTag = "<" id ">" | "<" id " " XmlAttribute ">".
+ * XmlCloseTag = "</" id ">".
+ * XmlOpencloseTag = "<" id "/>" | "<" id " " XmlAttribute "/>".
+ * XmlAttribute = id "=\"" text "\"" | XmlAttribute " " XmlAttribute.
+ *
+ * Coco/R does not allow blanks in terminal symbols.
+ *
+ * [1] Dominic Steinh�fel and Andreas Zeller: Input Invariants, 2022.
+ */
+COMPILER XmlTree
+
+PRODUCTIONS
+
+  XmlTree = XmlOpenTag InnerXmlTree XmlCloseTag.
+
+  XmlOpenTag = "<" id ">".
+
+  InnerXmlTree = ( text | XmlTree ) [ InnerXmlTree ].
+
+  XmlCloseTag = "</" id ">".
+
+  text = textch { textch } .
+
+  textch = "a" | "b" | "c" | "d" | "e" | "f".
+
+  id = idch { idch } .
+
+  idch = "A" | "B" | "C" | "D" | "E" | "F".
+
+END XmlTree.

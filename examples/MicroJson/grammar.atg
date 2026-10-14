@@ -1,0 +1,19 @@
+COMPILER Microjson
+
+CHARACTERS
+  Any = ANY .
+
+PRODUCTIONS
+  Microjson  = Json .
+  Json = Raw .
+  Raw = String | Dict | List | Fixed | Number .
+  String = '"' { Any | DecodeEscape } '"' .
+  Dict = '{' [ {','} String ':' Raw { ',' { ',' } String ':' Raw } ] '}' .
+  List = '[' [','] [Raw { ',' Raw }] ']' .
+  Fixed = "true" | "false" | "null" .
+  Number = ['-'] { Digit } [ '.' { Digit }] [ ('e' | 'E') ['+' | '-'] Digit { Digit } ] .
+  DecodeEscape = '\\' ( 'n' | 't' | 'r' | 'b' | 'f' | ( 'u' Hex Hex Hex Hex )) .
+  Digit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' .
+  Hex = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | 'a' | 'A' | 'b' | 'B' | 'c' | 'C' | 'd' | 'D' | 'e' | 'E' | 'f' | 'F' .
+
+END Microjson.

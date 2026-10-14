@@ -1,0 +1,3 @@
+# Keep the example files byte-identical (several use CRLF line endings)
+examples/** -text
+*.sh text eol=lf

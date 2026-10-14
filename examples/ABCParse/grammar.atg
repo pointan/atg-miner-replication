@@ -1,0 +1,10 @@
+COMPILER S
+
+PRODUCTIONS
+
+ S = A B C .
+ A = "a" [ A ] .
+ B = "b" [ B ] .
+ C = "c" [ C ] .
+
+END S.

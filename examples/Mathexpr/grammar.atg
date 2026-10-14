@@ -1,0 +1,48 @@
+COMPILER Math
+
+PRODUCTIONS
+
+Math = Expression .
+Expression = Addition .
+Addition = Multiplication { ( ('+' Multiplication) | ('-' Multiplication) ) } .
+Multiplication = Parenthesis { ( ('*' Parenthesis) | ('/' Parenthesis) ) } .
+Parenthesis = ( ('(' Expression ')') | Negative ) .
+Negative = ( ('-' Parenthesis) | Value ) .
+Value = ( Number | Variable ) .
+Number = Digit { Digit } [ '.' { Digit }] .
+Variable =   (
+                  "abs" Arguments1
+                  | "acos"  Arguments1
+                  | "asin"  Arguments1
+                  | "atan"  Arguments1
+                  | "atan2"  Arguments2
+                  | "ceil"  Arguments1
+                  | "cos"  Arguments1
+                  | "cosh"  Arguments1
+                  | "degrees"  Arguments1
+                  | "exp"  Arguments1
+                  | "fabs"  Arguments1
+                  | "floor"  Arguments1
+                  | "fmod"  Arguments2
+//                  | "frexp"  Arguments1
+                  | "hypot"  Arguments2
+                  | "ldexp"  Arguments2
+                  | "log"  Arguments1
+                  | "log10"  Arguments1
+//                  | "modf"  Arguments1
+                  | "pow"  Arguments2
+                  | "radians"  Arguments1
+                  | "sin"  Arguments1
+                  | "sinh"  Arguments1
+                  | "sqrt"  Arguments1
+                  | "tan"  Arguments1
+                  | "tanh"  Arguments1
+                  | "e"
+                  | "pi"
+//                  | "phi"
+                ) .
+Arguments1 = '(' Expression ')' .
+Arguments2 = '(' Expression ',' Expression ')' .
+Digit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' .
+
+END Math.

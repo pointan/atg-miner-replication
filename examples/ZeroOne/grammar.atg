@@ -1,0 +1,7 @@
+COMPILER ZeroOne
+
+PRODUCTIONS
+
+  ZeroOne = { '0' | '1' } .
+
+END ZeroOne.
